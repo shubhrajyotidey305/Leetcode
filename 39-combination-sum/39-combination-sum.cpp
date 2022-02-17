@@ -1,4 +1,4 @@
-class Solution {
+class Solution {    
 public:     
     vector<vector<int>> combinationSum(vector<int>& c, int t) {    
         vector<int> res;
