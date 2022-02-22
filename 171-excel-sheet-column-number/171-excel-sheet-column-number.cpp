@@ -1,19 +1,12 @@
 class Solution {
 public:
-    int titleToNumber(string s) {
-        long long ans = 0, i = 1;
-        while(!s.empty()){
-            char c = s.back();
-            s.pop_back();
-            
-            ans += (i*(getValue(c)));
-            i*=26;            
+    int titleToNumber(string columnTitle) {
+        int index = 0;
+        long long k=1;
+        for(int i = columnTitle.size()-1; i>=0; i--){
+            index += ((columnTitle[i] - 'A') + 1) * k;
+            k *= 26;
         }
-        return ans;
-        
-    }
-    
-    int getValue(char c){
-        return (c-'A'+1);
+        return index;
     }
 };
