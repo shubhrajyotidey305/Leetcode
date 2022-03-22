@@ -1,7 +1,7 @@
 class Solution {
 public:
     string getSmallestString(int n, int k) {
-        map<int, char> mp;
+        unordered_map<int, char> mp;
         for(int i=1; i<=26; i++){
             mp[i] = (char) 'a' + i - 1;
         }
