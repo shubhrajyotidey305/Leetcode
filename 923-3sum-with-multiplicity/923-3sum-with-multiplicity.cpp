@@ -3,7 +3,7 @@ public:
     const int mod = 1e9 + 7;
     int threeSumMulti(vector<int>& arr, int target) {
         int n = arr.size(), mod = 1e9+7, ans = 0;
-        unordered_map<int, int> m;
+        map<int, int> m;
         
         for(int i=0; i<n; i++) {
             ans = (ans + m[target - arr[i]]) % mod;
