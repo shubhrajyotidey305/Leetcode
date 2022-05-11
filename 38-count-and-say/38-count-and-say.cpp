@@ -17,8 +17,7 @@ public:
                 }
             }
             temp += to_string(cnt) + s[s.length()-1];
-            s = temp;
-            cout << s << endl;
+            s = temp;            
         }
         return s;
     }
