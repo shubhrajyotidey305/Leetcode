@@ -22,6 +22,7 @@ class Solution {
             j = mp[s2[i]];
         }
         return sum;
+        
     }
 };
 
