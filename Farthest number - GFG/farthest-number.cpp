@@ -9,19 +9,28 @@ class Solution{
   public:
     vector<int> farNumber(int n,vector<int> arr){
         //code here
-        vector<int> ans(n);
+        vector<pair<int, int>> v;
+        v.push_back({arr[n-1], n-1});
         
-        fill(ans.begin(), ans.end(), -1);
-        
-        for(int i=0; i<n; i++){
-            for(int j=n-1; j>=i; j--){
-                if(arr[i] > arr[j]){
-                    ans[i] = j;
-                    break;
+        arr[n-1] = -1;
+        for(int i=n-2; i>=0; i--){
+            int mx = -1, low = 0, high = v.size() - 1;
+            while(low<=high){
+                int mid = (low + high) / 2;
+                if(v[mid].first < arr[i]){
+                    mx = v[mid].second;
+                    high = mid - 1;
+                }
+                else{
+                    low = mid + 1;
                 }
             }
+            if(mx == -1){
+                v.push_back({arr[i], i});
+            }
+            arr[i] = mx;
         }
-        return ans;
+        return arr;
     }
 };
 
