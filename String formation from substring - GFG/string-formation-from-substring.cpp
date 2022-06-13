@@ -11,7 +11,7 @@ public:
 	int isRepeat(string s)
 	{
 	    // Your code goes here
-	    return ((s+s).find(s,1)==s.size()) ? 0 : 1;
+	    return ((s+s).find(s,1) == s.size()) ? 0 : 1;
 	}
 };
 
