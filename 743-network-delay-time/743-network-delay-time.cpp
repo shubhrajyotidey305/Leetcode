@@ -1,37 +1,38 @@
 class Solution {
+    typedef pair<int, int> pii;
 public:
-    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
-        int totalTimeTaken[n+1];
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap;
-        int ans = INT_MIN;
-        
-        for(int i=1;i<=n;i++) totalTimeTaken[i] = INT_MAX;
-        
-        minHeap.push({0, k});
-        while( minHeap.empty() == false ){
-            
-            auto node = minHeap.top();
-            minHeap.pop();
-            
-            while( minHeap.empty() == false && totalTimeTaken[node.second] != INT_MAX ){
-                node = minHeap.top();
-                minHeap.pop();
+    int networkDelayTime(vector<vector<int>>& edges, int n, int k) {
+        vector<int> v(n+1);
+        priority_queue<pii, vector<pii>, greater<pii>> pq;
+
+        int ans = -1;
+        for(int i=1; i<=n; i++) v[i] = INT_MAX;
+
+        pq.push({0,k});
+
+        while(!pq.empty()) {
+            auto u = pq.top();
+            pq.pop();
+
+            while(!pq.empty() and v[u.second] != INT_MAX) {
+                u = pq.top();
+                pq.pop();
             }
-            
-            if( totalTimeTaken[node.second] != INT_MAX )
-                break;
-            
-            totalTimeTaken[node.second] = node.first;
-            
-            for(auto &nb : times){
-                
-                if( nb[0] == node.second && totalTimeTaken[nb[1]] == INT_MAX ){
-                    minHeap.push({ (nb[2] + node.first), nb[1]});
+
+            if(v[u.second] != INT_MAX) break;
+
+            v[u.second] = u.first;
+            for(auto &it:edges) {
+                if(it[0] == u.second and v[it[1]] == INT_MAX) {
+                    pq.push({it[2] + u.first, it[1]});
                 }
             }
         }
-        
-        for(int i=1;i<=n;i++) ans = max(ans, totalTimeTaken[i]);
+
+        for(int i=1; i<=n; i++) {
+            ans = max(ans, v[i]);
+            cout << v[i] << " ";
+        }
 
         return (ans == INT_MAX)? -1 : ans;
     }
