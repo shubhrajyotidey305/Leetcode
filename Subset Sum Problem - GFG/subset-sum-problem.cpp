@@ -9,7 +9,7 @@ using namespace std;
 
 class Solution{   
 public:
-    vector<vector<int>> dp;
+    int dp[105][10005];
     int solve(vector<int> &arr, int n, int sum){
         if(n == 0){
             if(sum == 0) return 1;
@@ -24,7 +24,7 @@ public:
     
     bool isSubsetSum(vector<int>arr, int sum){
         // code here 
-        dp = vector<vector<int>>(arr.size()+1, vector<int>(sum+1,-1));
+        memset(dp, -1, sizeof(dp));
         return solve(arr, arr.size(), sum);
     }
 };
