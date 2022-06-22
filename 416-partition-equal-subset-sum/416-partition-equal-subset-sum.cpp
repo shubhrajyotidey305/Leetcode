@@ -1,13 +1,15 @@
 class Solution {
 public:
-    vector<vector<int>> dp;
+    
     bool canPartition(vector<int>& nums) {
         int n = nums.size();
         int total = 0;
         for(int i=0; i<n; i++) total += nums[i];
-        dp = vector<vector<int>> (n+1, vector<int>(total+1));        
+            
         if(total & 1) return false;        
         total /= 2;
+        
+        int dp[n+1][total+1];    
         
         for(int i=0; i<=total; i++){
             dp[0][i] = 0;
