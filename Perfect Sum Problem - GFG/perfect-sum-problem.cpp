@@ -7,7 +7,7 @@ class Solution{
 
 	public:
 	const int mod = 1e9+7;
-	int cnt = 0;
+	
 	int perfectSum(int arr[], int n, int sum)
 	{
         // Your code goes here
