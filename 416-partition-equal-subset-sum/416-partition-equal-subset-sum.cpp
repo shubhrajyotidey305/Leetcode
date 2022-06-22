@@ -5,10 +5,13 @@ public:
         int n = nums.size();
         int total = 0;
         for(int i=0; i<n; i++) total += nums[i];
-        dp = vector<vector<int>> (n+1, vector<int>(total+1, 0));        
+        dp = vector<vector<int>> (n+1, vector<int>(total+1));        
         if(total & 1) return false;        
         total /= 2;
         
+        for(int i=0; i<=total; i++){
+            dp[0][i] = 0;
+        }
         for(int i=0; i<=n; i++){
             dp[i][0] = 1;
         }
