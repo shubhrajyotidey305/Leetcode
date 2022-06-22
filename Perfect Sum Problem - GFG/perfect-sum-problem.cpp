@@ -11,8 +11,23 @@ class Solution{
 	int perfectSum(int arr[], int n, int sum)
 	{
         // Your code goes here
-        vector<vector<int>> dp(n+1, vector<int>(sum+1, -1));
-        return solve(dp, arr, n, sum);
+        vector<vector<int>> dp(n+1, vector<int>(sum+1, 0));
+        dp[0][0] = 1;
+        for(int i=1;i<=n;i++){
+            if(arr[i-1]==0) dp[i][0] = 2*dp[i-1][0];
+            else dp[i][0] = dp[i-1][0];
+        }
+        for(int i=1; i<=n; i++){
+            for(int j=1;j<=sum; j++){
+                if(arr[i-1]<=j){
+                    dp[i][j] = (dp[i-1][j-arr[i-1]]%mod + dp[i-1][j]%mod)%mod;
+                }
+                else{
+                    dp[i][j] = dp[i-1][j]%mod;
+                }
+            }
+        }
+        return dp[n][sum];
 	}
 	
 	int solve(vector<vector<int>> &dp, int arr[], int n, int sum){
