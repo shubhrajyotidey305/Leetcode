@@ -1,7 +1,7 @@
 class Solution {
 public:    
     int dp[22][4002];     
-    int solve(vector<int>& nums, int target, int n) {
+    int solve(vector<int>& nums, int target, int n) {        
         if(n == 0){
             if(target == 0) return 1;
             return 0;
@@ -18,6 +18,7 @@ public:
     int findTargetSumWays(vector<int>& nums, int target) {
         int n = nums.size();
         memset(dp, -1, sizeof(dp));
-        return solve(nums, target, n);        
+        int x = solve(nums, target, n);       
+        return x;
     }
 };
