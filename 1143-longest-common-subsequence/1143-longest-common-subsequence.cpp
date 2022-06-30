@@ -1,9 +1,10 @@
 class Solution {
 public:
-    int dp[1002][1002];
+    vector<vector<int>> dp;
     int longestCommonSubsequence(string s1, string s2) {
-        memset(dp, -1, sizeof(dp));
-        return solve(s1, s2, s1.length(), s2.length());
+        int n = s1.size(), m = s2.size();
+        dp = vector<vector<int>> (n+1, vector<int>(m+1, -1));
+        return solve(s1, s2, n, m);
     }
     
     int solve(string &s1, string &s2, int n, int m){
