@@ -35,9 +35,6 @@ class Solution {
             i++;
         }
         
-        // for(int i=31; i>=0; i--) cout << num[i] << " ";
-        // cout << endl;
-        
         return (int) num.to_ulong();
     }
 };
