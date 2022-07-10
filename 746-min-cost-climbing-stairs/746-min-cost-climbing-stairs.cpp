@@ -14,6 +14,6 @@ public:
         
         if(dp[idx] != -1) return dp[idx];
         
-        return dp[idx] = min(cost[idx] + solve(cost, n, idx+1), cost[idx] + solve(cost, n, idx + 2));
+        return dp[idx] = cost[idx] + min(solve(cost, n, idx+1), solve(cost, n, idx + 2));
     }
 };
