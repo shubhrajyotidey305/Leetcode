@@ -23,30 +23,18 @@ public:
             return 0;
         }
         
-        if(isPalindrome(str, i, j)) {
-            return 0;
-        }
         
         if(dp[i][j]!=-1) {
             return dp[i][j];
         }
         
+        if(isPalindrome(str, i, j)) {
+            return 0;
+        }
+        
         int ans = INT_MAX;
         for(int k=i; k<j; k++) {
-            int t1, t2;
-            if(dp[i][k] != -1) {
-                t1 = dp[i][k];
-            } else {
-                t1 = dp[i][k] = solve(str, i, k);
-            }
-            
-            if(dp[k+1][j] != -1) {
-                t2 = dp[k+1][j];
-            } else {
-                t2 = dp[k+1][j] = solve(str, k+1, j);
-            }
-            
-            int temp = t1 + t2 + 1;
+            int temp = solve(str, i, k) + solve(str, k+1, j) + 1;
             ans = min(ans, temp);
         }
         return dp[i][j] = ans;
