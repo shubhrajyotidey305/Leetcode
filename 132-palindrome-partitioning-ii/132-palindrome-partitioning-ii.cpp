@@ -10,21 +10,22 @@ public:
     int solve(string &str, int i, int j) {
         if(i > j) {
             return 0;
+        }       
+        
+        
+        if(dp[i][j]!=-1) {
+            return dp[i][j];
         }
         
         if(isPalindrome(str, i, j)) {
             return 0;
         }
         
-        if(dp[i][j]!=-1) {
-            return dp[i][j];
-        }
-        
         int ans = INT_MAX;
         for(int k=i; k<j; k++) {
             if(isPalindrome(str, i, k)) {
                 ans = min(ans, 1 + solve(str, k+1, j));
-            }            
+            }
         }
         return dp[i][j] = ans;
     }
