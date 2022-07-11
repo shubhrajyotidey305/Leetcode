@@ -1,9 +1,9 @@
 class Solution {
 public:
-    int dp[2001][2001];
+   vector<vector<int>> dp;
     int minCut(string str) {
-        memset(dp, -1, sizeof(dp));
         int n = str.size();
+        dp = vector<vector<int>> (n+1, vector<int>(n+1, -1));        
         return solve(str, 0, n-1);
     }
     
