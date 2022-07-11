@@ -33,7 +33,20 @@ public:
         
         int ans = INT_MAX;
         for(int k=i; k<j; k++) {
-            int temp = solve(str, i, k) + solve(str, k+1, j) + 1;
+            int t1, t2;
+            if(dp[i][k] != -1) {
+                t1 = dp[i][k];
+            } else {
+                t1 = dp[i][k] = solve(str, i, k);
+            }
+            
+            if(dp[k+1][j] != -1) {
+                t2 = dp[k+1][j];
+            } else {
+                t2 = dp[k+1][j] = solve(str, k+1, j);
+            }
+            
+            int temp = t1 + t2 + 1;
             ans = min(ans, temp);
         }
         return dp[i][j] = ans;
