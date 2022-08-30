@@ -3,11 +3,11 @@ public:
     vector<int> dp;
     int deleteAndEarn(vector<int>& nums) {
         int n = 10001;
-        vector<int> sum(n+2, 0);
+        vector<int> sum(n, 0);
         for(auto it:nums) {
             sum[it] += it;
         }
-        dp.assign(n+2, -1);
+        dp.assign(n+1, -1);
         return solve(n, sum);
     }
     
