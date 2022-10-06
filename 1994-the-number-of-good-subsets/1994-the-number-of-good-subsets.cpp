@@ -60,7 +60,7 @@ public:
             return;
         }
         product=(product%mod * (curr%mod))%mod;
-        mask = mask | (bitmask[curr]);
+        mask = mask ^ (bitmask[curr]);
         res.push_back(curr);
         help(i+1,product,mask,res,arr,bitmask,freq);
         res.pop_back();
