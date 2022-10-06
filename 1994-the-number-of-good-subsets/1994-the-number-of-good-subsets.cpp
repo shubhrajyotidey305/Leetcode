@@ -29,7 +29,7 @@ public:
                 continue;
             }
             a/=primes[i];
-            ans=ans | (1<<(primes[i]));
+            ans=ans ^ (1<<(primes[i]));
             if(a%primes[i]==0){
                 return -1;
             }
