@@ -2,45 +2,33 @@ class Solution {
 public:
     vector<bool> canMakePaliQueries(string s, vector<vector<int>>& queries) {
         int n = s.size();
+        unordered_map<int, vector<int>> mp;
+        vector<int> f(26, 0);
+        mp[-1] = f;
         
-        unordered_map<int,vector<int>> mp;
-        vector<int> freq(26,0);
-        mp[-1] = freq;
-        
-        for(int i = 0; i<n; i++){
-            freq[s[i]-'a']++;
-            mp[i] = freq;
+        for(int i=0; i<n; i++) {
+            f[s[i]-'a']++;
+            mp[i] = f;
         }
-        
-        int m = queries.size();
-        vector<bool> ans(m);
-        
-        for(int i = 0; i<m; i++){
+        vector<bool> ans(queries.size());
+        for(int i=0; i<queries.size(); i++) {
             int l = queries[i][0];
             int r = queries[i][1];
             int k = queries[i][2];
             
-            vector<int> freq(26,0);
-            int odd_cnt = 0;
-            
-            for(int j = 0; j<26; j++){
-                freq[j] = mp[r][j] - mp[l-1][j];
-                if(freq[j]&1)
-                    odd_cnt++;
+            vector<int> f(26, 0);
+            int odd = 0;
+            for(int j=0; j<26; j++) {
+                f[j] = mp[r][j] - mp[l-1][j];
+                if(f[j] % 2) odd++;
             }
             
-            
-            
-            if(odd_cnt/2 > k){
+            if(odd / 2 > k) {
                 ans[i] = false;
-            }
-            else{
+            } else {
                 ans[i] = true;
-            }
-            
-            
+            }            
         }
-        
         return ans;
     }
 };
